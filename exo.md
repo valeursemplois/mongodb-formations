@@ -96,7 +96,7 @@ etudiants =[
 ### 4 Execution de la validation lors de la création de la collection
 
 ````
- db.createCollection("etudiants", { validator: { $jsonSchema: { "bsonType": "object", "required": ["nom", "prenom", "status", "age"], "properties": validation } } })
+ db.createCollection("etudiants", { validator: { $jsonSchema: { "bsonType": "object", "required": ["nom", "prenom", "status", "age","notes"], "properties": validation } } })
 ````
 
 ### 4 Création des données
