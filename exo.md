@@ -39,7 +39,28 @@ var validation = {
     "status":{
       "enum":["Inscris","NonInscris" ],
       "description":"Inscription"
-    }
+    },
+    "notes":{
+        "bsonType":"array",
+        "minItems": 1,
+        "maxItems": 3,
+        "items":{
+          "required":["matiere","note"],
+          "bsonType":"object",
+          "properties":{
+            "matiere":{
+              "bsonType":"string",
+              "description":"nom de la matiere"
+            },
+            "note":{
+              "bsonType":"int",
+              "minimum":0,
+              "maximum":20,
+              "description": "note de l'etudiant" 
+            }
+          }
+        }
+      }
   }
 
 etudiants =[
