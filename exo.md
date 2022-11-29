@@ -92,3 +92,37 @@ db.etudiants.insertOne({"nom":"dummyData","prenom":"DummyData",age:12,"status":"
 L'enregistrement echouera car l'utilisateur n'a pas l'age requis
 
 ### 6 validation d'un champ tableau
+
+Rajouter le code ci-dessous à notre objet validation du précédent fichier js
+`````
+  "notes":{
+    "bsonType":"array",
+    "minItems": 1,
+    "maxItems": 3,
+    "items":{
+      "required":["matiere","note"],
+      "bsonType":"object",
+      "properties":{
+        "matiere":{
+          "bsonType":"string",
+          "description":"nom de la matiere"
+        },
+        "note":{
+          "bsonType":"int",
+          "minimum":0,
+          "maximum":20,
+          "description": "note de l'etudiant" 
+        }
+      }
+    }
+  }
+
+`````
+Recharger le fichier et modifier la validation à l'aide des commandes ci-dessous
+`````
+load("cheminfichier.js"); // chargement du fichier
+// Modification de la validation
+
+db.runCommand({ "collMod": "etudiants", "validator": { $jsonSchema: { "bsonType": "object", "required": ["nom","prenom","age","status","notes"], "properties": validation } } });
+
+``````
